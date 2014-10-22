@@ -1,5 +1,31 @@
 <h1>Listing todos</h1>
 
+<body>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '298274340379221',
+      xfbml      : true,
+      version    : 'v2.1'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+
 <table>
   <thead>
     <tr>
@@ -9,6 +35,7 @@
     </tr>
   </thead>
 
+
   <tbody>
     <% @todos.each do |todo| %>
       <tr>
@@ -16,12 +43,16 @@
         <td><%= todo.notes %></td>
         <td><%= link_to 'Show', todo %></td>
         <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-        <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+
+
+</body>
 <br>
+
 
 <%= link_to 'New Todo', new_todo_path %>
